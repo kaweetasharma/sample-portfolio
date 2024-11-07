@@ -4,7 +4,6 @@ import './index.scss'
 import AnimatedLetters from '../../components/AnimatedLetters'
 import Logo from './Logo'
 import Loader from 'react-loaders'
-import gsap from 'gsap'
 
 const Home = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
@@ -13,26 +12,19 @@ const Home = () => {
   const jobArray = Array.from('Web Developer')
 
   useEffect(() => {
+    // CSS Class changing for animation effect
     const timer = setTimeout(() => {
       setLetterClass('text-animate-hover')
     }, 4000)
-    // GSAP animation for drawing the letter K
-    gsap.set(letterKRef.current, {
-      strokeDasharray: 300,
-      strokeDashoffset: 300,
-    })
-    gsap.to(letterKRef.current, {
-      strokeDashoffset: 0,
-      duration: 3,
-      ease: 'power2.inOut',
-      delay: 1, // Delay to sync with other animations
-    })
 
-    gsap.to(letterKRef.current, {
-      fill: 'url(#gradient)',
-      duration: 1,
-      delay: 4,
-    })
+    // Animate the drawing of the letter "K"
+    if (letterKRef.current) {
+      letterKRef.current.style.strokeDasharray = '300'
+      letterKRef.current.style.strokeDashoffset = '300'
+      letterKRef.current.style.animation =
+        'drawKAnimation 3s ease-in-out forwards 1s, fillKColor 1s ease-in-out forwards 4s'
+    }
+
     return () => clearTimeout(timer)
   }, [])
 
@@ -74,7 +66,7 @@ const Home = () => {
                 <path
                   ref={letterKRef}
                   d="M 10,10 L 10,90 L 30,90 L 30,50 L 70,90 L 90,90 L 50,50 L 90,10 L 70,10 L 30,45 L 30,10 Z"
-                  fill="none" // Initially empty so it can be filled later
+                  fill="none"
                   stroke="#003b46"
                   strokeWidth="2"
                 />

@@ -1,39 +1,26 @@
 import React, { useEffect, useRef } from 'react'
 import './index.scss'
-import gsap from 'gsap-trial'
-import DrawSVGPlugin from 'gsap-trial/DrawSVGPlugin'
 
 const Logo = () => {
-  const bgRef = useRef()
-  const outlineLogoRef = useRef()
+  const bgRef = useRef(null)
+  const outlineLogoRef = useRef(null)
 
   useEffect(() => {
-    // Register the GSAP plugin for drawing SVG outlines
-    gsap.registerPlugin(DrawSVGPlugin)
+    // Animate background opacity with vanilla JavaScript
+    if (bgRef.current) {
+      bgRef.current.style.transition = 'opacity 1.5s ease-in-out'
+      bgRef.current.style.opacity = 1
+    }
 
-    // Timeline for the animation sequence
-    const tl = gsap.timeline()
-
-    // Animate the background opacity
-    tl.to(bgRef.current, {
-      duration: 1.5,
-      opacity: 1,
-      ease: 'power1.inOut',
-    })
-
-    // Draw the outline of the letter "K"
-    tl.from(outlineLogoRef.current, {
-      drawSVG: '0%', // Draw from 0% to 100%
-      duration: 2.5, // Duration of drawing the outline
-      ease: 'power2.inOut',
-    })
-
-    // Fill the solid logo with gradient
-    tl.to(outlineLogoRef.current, {
-      fill: 'url(#gradient)', // Fill color after outline is complete
-      duration: 1.5,
-      ease: 'power2.inOut',
-    })
+    // Animate the drawing of the letter "K"
+    if (outlineLogoRef.current) {
+      outlineLogoRef.current.style.strokeDasharray =
+        outlineLogoRef.current.getTotalLength()
+      outlineLogoRef.current.style.strokeDashoffset =
+        outlineLogoRef.current.getTotalLength()
+      outlineLogoRef.current.style.animation =
+        'drawKAnimation 2.5s ease-in-out forwards 1.5s, fillKColor 1.5s ease-in-out forwards 4s'
+    }
   }, [])
 
   return (

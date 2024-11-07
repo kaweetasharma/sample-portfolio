@@ -27,6 +27,26 @@
   }
 }
 
+/* Draw animation keyframes */
+@keyframes drawKAnimation {
+  from {
+    stroke-dashoffset: 300;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Fill color animation keyframes */
+@keyframes fillKColor {
+  0% {
+    fill: none;
+  }
+  100% {
+    fill: url(#gradient);
+  }
+}
+
 /* Background pulse animation to make the logo container dynamic */
 @keyframes pulseBackground {
   0% {

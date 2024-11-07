@@ -122,11 +122,28 @@
         vertical-align: middle;
 
         .letter-k {
-          width: 100%;
-          height: auto;
-          transform: translateY(5px);
-          animation: fadeIn 1s linear both;
-          animation-delay: 1.4s;
+          stroke-dasharray: 300;
+          stroke-dashoffset: 300;
+          animation: drawKAnimation 3s ease-in-out forwards,
+            fillKColor 1s ease-in-out forwards 4s;
+
+          @keyframes drawKAnimation {
+            from {
+              stroke-dashoffset: 300;
+            }
+            to {
+              stroke-dashoffset: 0;
+            }
+          }
+
+          @keyframes fillKColor {
+            0% {
+              fill: none;
+            }
+            100% {
+              fill: url(#gradient);
+            }
+          }
         }
       }
 
