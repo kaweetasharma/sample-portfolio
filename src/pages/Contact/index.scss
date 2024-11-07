@@ -1,0 +1,124 @@
+// Variables for consistent color usage
+:root {
+  --primary-teal: #003b46;
+  --accent-yellow: #ffd700;
+  --text-white: #ffffff;
+  --text-charcoal: #333333;
+  --highlight-blue: #007bff;
+  --background-light: #87cefa;
+}
+
+.container.contact-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 2rem;
+  background: var(--background-light);
+  min-height: 100vh;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .text-zone {
+    max-width: 600px;
+    padding: 2rem;
+    animation: fadeIn 1.5s ease-in-out forwards;
+
+    h1 {
+      font-size: 4rem;
+      font-family: 'Coolvetica', sans-serif;
+      color: var(--primary-teal);
+      font-weight: 400;
+      line-height: 1.1;
+
+      @media (max-width: 768px) {
+        font-size: 3rem;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 2.5rem;
+      }
+    }
+
+    p {
+      font-size: 1.6rem;
+      line-height: 1.5;
+      color: var(--text-charcoal);
+      margin-top: 1.5rem;
+
+      @media (max-width: 768px) {
+        font-size: 1.4rem;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 1.2rem;
+      }
+    }
+  }
+  .info-map {
+    position: relative;
+    background-color: var(--primary-teal);
+    margin-top: 2rem;
+    padding: 2rem;
+    color: var(--text-white);
+    font-family: 'Helvetica';
+    font-size: 1.6rem;
+    font-weight: 300;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    z-index: 100; // Ensure it appears above other elements, including the map
+
+    @media (min-width: 1024px) {
+      position: absolute;
+      top: 30px;
+      right: 30px; // Adjusted to place it on the top right corner of the map
+      margin-top: 0; // No margin-top needed when absolute
+    }
+
+    span {
+      font-size: 1.4rem;
+      display: block;
+      padding-top: 1.5rem;
+      color: var(--accent-yellow);
+    }
+  }
+
+  .map-wrap {
+    position: relative;
+    float: right;
+    width: 100%;
+    height: 400px;
+    margin-top: 2rem;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+    @media (min-width: 1024px) {
+      width: 100%;
+      height: 600px;
+      margin-top: 0;
+    }
+
+    .leaflet-container {
+      width: 100%;
+      height: 100%;
+      animation: backInRight 1s 1.2s;
+      animation-fill-mode: forwards;
+      border-radius: 12px;
+    }
+  }
+}
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,60 @@
+.logo-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px; /* Ensures the logo doesn't get too large */
+  height: auto;
+  margin: 0 auto; /* Centers the logo */
+  opacity: 0; /* Initial fade-in effect */
+  overflow: visible;
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
+
+  &:hover {
+    transform: scale(1.08);
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .svg-container {
+    stroke: #003b46; /* Teal color for the outline of the "K" */
+    stroke-width: 10; /* Thicker stroke for boldness */
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none; /* Initially no fill, will be added later with animation */
+    transition: fill 1.5s ease-in-out, stroke 1s ease-in-out;
+  }
+}
+
+/* Background pulse animation to make the logo container dynamic */
+@keyframes pulseBackground {
+  0% {
+    background-color: rgba(0, 59, 70, 0.5);
+  }
+  50% {
+    background-color: rgba(0, 59, 70, 0.8);
+  }
+  100% {
+    background-color: rgba(0, 59, 70, 0.5);
+  }
+}
+
+/* Background animation for logo container */
+.logo-container::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(8, 145, 178, 0.3), transparent);
+  animation: pulseBackground 6s infinite ease-in-out;
+  z-index: -1;
+}
+
+/* Change the fill color on hover */
+.svg-container path:hover {
+  fill: #ff6f61; /* Coral color on hover */
+  transition: fill 0.5s ease-in-out;
+}
